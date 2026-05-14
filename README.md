@@ -1,46 +1,49 @@
-<<<<<<< HEAD
-# chatbot-
-This is a chatbot created using langchain
-=======
-# AI Chatbot using LangChain and Groq
+# AI Chatbot using LangChain, Groq, and Ollama
 
 A simple AI chatbot built using:
 
 - LangChain
 - Groq API
+- Ollama
 - Streamlit
 - Python
 
-This project uses the Groq inference API with the Llama 3.1 model to generate real-time AI responses through a Streamlit interface.
+This project supports both:
+- Cloud-based LLM inference using Groq
+- Local LLM inference using Ollama
 
 ---
 
-## Features
+# Features
 
 - Real-time AI chatbot
 - LangChain integration
-- Secure API key management using `.env`
-- Simple Streamlit web interface
-- Fast responses using Groq inference
+- Streamlit web interface
+- Secure API key handling using `.env`
+- Groq cloud inference support
+- Ollama local inference support
+- Prompt templates and output parsing
 
 ---
 
-## Tech Stack
+# Tech Stack
 
 - Python
 - LangChain
 - Groq API
+- Ollama
 - Streamlit
 - python-dotenv
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```text
 Chatbot/
 │
 ├── app.py
+├── locallamma.py
 ├── requirements.txt
 ├── .env
 ├── .gitignore
@@ -49,30 +52,34 @@ Chatbot/
 
 ---
 
-## Installation
+# Installation
 
-### 1. Clone the repository
+## 1. Clone Repository
 
 ```bash
-git clone <your-repo-link>
+git clone <your-repository-link>
 cd Chatbot
 ```
 
-### 2. Create virtual environment
+---
+
+## 2. Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-### 3. Activate virtual environment
+---
 
-#### Windows PowerShell
+## 3. Activate Virtual Environment
+
+### Windows PowerShell
 
 ```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-#### Windows CMD
+### Windows CMD
 
 ```cmd
 venv\Scripts\activate.bat
@@ -80,7 +87,7 @@ venv\Scripts\activate.bat
 
 ---
 
-## Install Dependencies
+# Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -88,44 +95,59 @@ pip install -r requirements.txt
 
 ---
 
-## Setup Environment Variables
+# Environment Variables
 
-Create a `.env` file in the project folder:
+Create a `.env` file:
 
 ```env
 GROQ_API_KEY=your_api_key
+LANGCHAIN_API_KEY=your_langchain_key
 ```
 
 ---
 
-## Run the Application
+# Run Groq Cloud Chatbot
 
 ```bash
 streamlit run app.py
 ```
 
----
-
-## Model Used
-
+Model used:
 - `llama-3.1-8b-instant`
 
-Powered by Groq inference.
+---
+
+# Run Local Ollama Chatbot
+
+## Download Ollama Model
+
+```bash
+ollama pull llama3
+```
+
+## Run Local Chatbot
+
+```bash
+streamlit run locallamma.py
+```
+
+Local model used:
+- `llama3`
 
 ---
 
-## Future Improvements
+# Future Improvements
 
 - Chat history
 - Streaming responses
-- PDF Q&A
 - RAG pipeline
+- PDF Q&A system
 - Vector database integration
 - Multi-model support
+- Agent workflows
 
 ---
 
-## Author
+# Author
 
 Roshan Bhaskar
->>>>>>> 1e467dc7b8d1e17dc4f16105675ef29f5bd6f483

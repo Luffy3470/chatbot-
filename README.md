@@ -1,49 +1,35 @@
-# AI Chatbot using LangChain, Groq, and Ollama
+# AI Chatbot using LangChain + Groq + Streamlit
 
-A simple AI chatbot built using:
+A conversational AI chatbot built using LangChain, Groq, and Streamlit with conversation memory support.
 
-- LangChain
-- Groq API
-- Ollama
-- Streamlit
-- Python
+## Features
 
-This project supports both:
-- Cloud-based LLM inference using Groq
-- Local LLM inference using Ollama
-
----
-
-# Features
-
-- Real-time AI chatbot
-- LangChain integration
-- Streamlit web interface
-- Secure API key handling using `.env`
-- Groq cloud inference support
-- Ollama local inference support
-- Prompt templates and output parsing
+* Conversational AI chatbot
+* Memory-based chat history
+* Built using LangChain Expression Language (LCEL)
+* Fast inference using Groq API
+* Streamlit web interface
+* Environment variable support using `.env`
+* LangSmith tracing support
 
 ---
 
 # Tech Stack
 
-- Python
-- LangChain
-- Groq API
-- Ollama
-- Streamlit
-- python-dotenv
+* Python
+* LangChain
+* Groq API
+* Streamlit
+* python-dotenv
 
 ---
 
 # Project Structure
 
-```text
-Chatbot/
+```bash
+AI-Chatbot/
 │
 ├── app.py
-├── locallamma.py
 ├── requirements.txt
 ├── .env
 ├── .gitignore
@@ -54,40 +40,32 @@ Chatbot/
 
 # Installation
 
-## 1. Clone Repository
+## 1. Clone the repository
 
 ```bash
-git clone <your-repository-link>
-cd Chatbot
+git clone <your-repo-url>
+cd AI-Chatbot
 ```
 
 ---
 
-## 2. Create Virtual Environment
+## 2. Create virtual environment
+
+### Windows
 
 ```bash
 python -m venv venv
 ```
 
----
+Activate virtual environment:
 
-## 3. Activate Virtual Environment
-
-### Windows PowerShell
-
-```powershell
-.\venv\Scripts\Activate.ps1
-```
-
-### Windows CMD
-
-```cmd
-venv\Scripts\activate.bat
+```bash
+venv\Scripts\activate
 ```
 
 ---
 
-# Install Dependencies
+## 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -97,57 +75,137 @@ pip install -r requirements.txt
 
 # Environment Variables
 
-Create a `.env` file:
+Create a `.env` file in the project root.
 
 ```env
-GROQ_API_KEY=your_api_key
-LANGCHAIN_API_KEY=your_langchain_key
+GROQ_API_KEY=your_groq_api_key
+LANGCHAIN_API_KEY=your_langchain_api_key
 ```
 
 ---
 
-# Run Groq Cloud Chatbot
+# Run the Application
 
 ```bash
 streamlit run app.py
 ```
 
-Model used:
-- `llama-3.1-8b-instant`
+---
+
+# How It Works
+
+The chatbot follows this pipeline:
+
+```text
+User Input
+   ↓
+Prompt Template
+   ↓
+Groq LLM
+   ↓
+Output Parser
+   ↓
+Response Display
+```
+
+Conversation history is stored using Streamlit session state and passed back into the prompt for contextual memory.
 
 ---
 
-# Run Local Ollama Chatbot
+# Memory Implementation
 
-## Download Ollama Model
+Chat history is stored using:
 
-```bash
-ollama pull llama3
+```python
+st.session_state.messages
 ```
 
-## Run Local Chatbot
+Previous messages are injected into the prompt template to create conversational context.
 
-```bash
-streamlit run locallamma.py
+---
+
+# LangChain Components Used
+
+## ChatPromptTemplate
+
+Used to dynamically create prompts.
+
+## ChatGroq
+
+Connects the application to Groq-hosted LLMs.
+
+## StrOutputParser
+
+Converts model responses into plain strings.
+
+## LCEL Chain
+
+```python
+chain = prompt | llm | output_parser
 ```
 
-Local model used:
-- `llama3`
+Creates a LangChain execution pipeline.
+
+---
+
+# Example Prompt Flow
+
+```text
+Conversation history:
+User: Hello
+AI: Hi! How can I help you?
+
+User: What is Machine Learning?
+```
 
 ---
 
 # Future Improvements
 
-- Chat history
-- Streaming responses
-- RAG pipeline
-- PDF Q&A system
-- Vector database integration
-- Multi-model support
-- Agent workflows
+* Chat UI with message bubbles
+* Streaming responses
+* Multiple LLM support
+* RAG integration
+* PDF chatbot
+* Database memory
+* Authentication system
+* Deployment on Streamlit Cloud or Render
+
+---
+
+# Requirements
+
+Example `requirements.txt`
+
+```txt
+langchain
+langchain-groq
+streamlit
+python-dotenv
+```
+
+---
+
+# Important Notes
+
+Do NOT upload:
+
+* `.env`
+* API keys
+* virtual environment folders
+
+Use `.gitignore`:
+
+```txt
+venv/
+.env
+__pycache__/
+```
 
 ---
 
 # Author
 
 Roshan Bhaskar
+B.Tech Civil Engineering, National Institute of Technology Tiruchirappalli
+AI/ML Enthusiast | LLM Engineering | Full Stack Development
